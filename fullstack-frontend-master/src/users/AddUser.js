@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import "./AddUser.css";
 export default function AddUser() {
   let navigate = useNavigate();
 
@@ -17,7 +17,9 @@ export default function AddUser() {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
+function myFunc(){
+  alert("Sucessfully Registered")
+}
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:8080/user", user);
@@ -42,7 +44,9 @@ export default function AddUser() {
                 name="name"
                 value={name}
                 onChange={(e) => onInputChange(e)}
+                required="ture"
               />
+               
             </div>
             <div className="mb-3">
               <label htmlFor="Username" className="form-label">
@@ -54,8 +58,13 @@ export default function AddUser() {
                 placeholder="Enter your username"
                 name="username"
                 value={username}
+                errorMessage= "it should be 3-20 characters and shouldn't include any special character!"
+                pattern="^[a-zA-Z][A-Za-z0-9-_]{3,20}$"
                 onChange={(e) => onInputChange(e)}
+                required="ture"
+                
               />
+               <span>it should be 3-20 characters and shouldn't include any special character!</span>
             </div>
             <div className="mb-3">
               <label htmlFor="Email" className="form-label">
@@ -66,9 +75,14 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="Enter your e-mail address"
                 name="email"
+                errorMessage= "Enter a valid email address!"
                 value={email}
+                pattern="Enter a valid email address!"
                 onChange={(e) => onInputChange(e)}
+                required="ture"
               />
+              <span>Enter a valid email address!</span>
+             
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
@@ -84,9 +98,12 @@ export default function AddUser() {
                 "Password should be 8-24 characters and include at least 1 letter, 1 number and 1 special character!"
                 value={password}
                 onChange={(e) => onInputChange(e)}
+                
               />
+              <span>Password should be 8-24 characters and include at least 1 letter, 1 number and 1 special character!</span>
+             
             </div>
-            <button type="submit" className="btn btn-outline-primary">
+            <button type="myFunc()" className="btn btn-outline-primary">
               Submit
             </button>
             <Link className="btn btn-outline-danger mx-2" to="/">
