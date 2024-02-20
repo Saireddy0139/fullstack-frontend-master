@@ -77,7 +77,7 @@ function myFunc(){
                 name="email"
                 errorMessage= "Enter a valid email address!"
                 value={email}
-                pattern="Enter a valid email address!"
+                
                 onChange={(e) => onInputChange(e)}
                 required="ture"
               />
